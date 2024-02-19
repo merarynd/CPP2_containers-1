@@ -5,22 +5,33 @@
 #include <iostream>
 #include <stdexcept>
 
-class S21Matrix {
+enum Color { RED, BLACK };
+
+template <typename Key, typename Value>
+struct Node {
+  Key key;
+  Value value;
+  Color color;
+  Node* parent;
+  Node* left;
+  Node* right;
+};
+
+template <typename Key, typename Value>
+class RedBlackTree {
+ private:
+  Node<Key, Value>* root;
+
+  // Дополнительные приватные методы для поддержания баланса
+
  public:
-  //// Конструкторы и деструктор:
-  S21Matrix();
-  S21Matrix(int rows, int cols);
-  S21Matrix(const S21Matrix& other);
-  S21Matrix(S21Matrix&& other) noexcept;
-  ~S21Matrix();
-  void Memory() {
-    matrix_ = new double*[rows_];
-    for (int i = 0; i < rows_; ++i) {
-      matrix_[i] = new double[cols_];
-    }
-  }
+  RedBlackTree();
+  ~RedBlackTree();
+
+  // Публичные методы для вставки, удаления, поиска и т. д.
 
  private:
+  // Приватные методы для вставки, удаления, балансировки и т. д.
 };
 
 #endif  // S21_CONTAINERS_H_
