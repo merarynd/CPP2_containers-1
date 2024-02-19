@@ -1,37 +1,5 @@
 #ifndef S21_CONTAINERS_H_
 #define S21_CONTAINERS_H_
-
-#include <cmath>
-#include <iostream>
-#include <stdexcept>
-
-enum Color { RED, BLACK };
-
-template <typename Key, typename Value>
-struct Node {
-  Key key;
-  Value value;
-  Color color;
-  Node* parent;
-  Node* left;
-  Node* right;
-};
-
-template <typename Key, typename Value>
-class RedBlackTree {
- private:
-  Node<Key, Value>* root;
-
-  // Дополнительные приватные методы для поддержания баланса
-
- public:
-  RedBlackTree();
-  ~RedBlackTree();
-
-  // Публичные методы для вставки, удаления, поиска и т. д.
-
- private:
-  // Приватные методы для вставки, удаления, балансировки и т. д.
-};
-
+#include "Derevo/s21_derevo.h"
+#include "s21_array/s21_array.h"
 #endif  // S21_CONTAINERS_H_
