@@ -1,8 +1,8 @@
 CC=g++
 CFLAGS=-Wall -Werror -Wextra -g -lstdc++ -std=c++17
 OUTFLAG = -Wall -Werror -Wextra -o out
-TEST=s21_matrix_oop_tests
-TARGET=s21_matrix_oop
+TEST=s21_containers_tests
+TARGET=s21_containers
 OS = $(shell uname)
 ifeq ($(OS), Linux)
  CHECK_FLAGS = -lpthread -lcheck -pthread -lrt -lm -lsubunit -lgtest
@@ -10,7 +10,7 @@ else
  CHECK_FLAGS = -lcheck -lm -lpthread -lgtest
 endif
 
-all: clean s21_matrix_oop.a
+all: clean s21_containers.a
 
 clean:
 	rm -rf *.gcda *.gcno report gcov_report.* gcov_report *.info
@@ -21,10 +21,10 @@ clean:
 	rm -rf *.out
 	rm -rf *.o
 
-s21_matrix_oop.a:
+s21_containers.a:
 	$(CC) -g -c $(CFLAGS) *.cc
-	ar rcs s21_matrix_oop.a *.o
-	ranlib s21_matrix_oop.a
+	ar rcs s21_containers.a *.o
+	ranlib s21_containers.a
 
 obj:
 	$(CC) -g  $(OUTFLAG) $(TARGET).cc
@@ -43,7 +43,7 @@ leaks: test
 	CK_FORK=no leaks --atExit -- ./test.out
 
 gcov_report:
-	gcc $(CFLAGS) -fprofile-arcs -ftest-coverage s21_matrix_oop_tests.cc s21_matrix_oop.cc $(CHECK_FLAGS) -o test
+	gcc $(CFLAGS) -fprofile-arcs -ftest-coverage s21_containers_tests.cc s21_containers.cc $(CHECK_FLAGS) -o test
 	./test
 	lcov -t "test" --ignore-errors mismatch -o test.info --no-external -c -d  ./
 	genhtml test.info -o report
